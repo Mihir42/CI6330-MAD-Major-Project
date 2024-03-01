@@ -1,5 +1,5 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, View } from "react-native";
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, View } from 'react-native';
 
 export const Screen = ({ children }) => {
   // Initialisation --------------------------
@@ -18,9 +18,9 @@ const styles = StyleSheet.create({
   screen: {
     padding: 15,
     flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+    backgroundColor: '#005478',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 
