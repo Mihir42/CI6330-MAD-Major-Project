@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
 import { useEffect, useState } from "react";
-import { Image, StyleSheet, Text, View } from "react-native";
+import { Image, StyleSheet, Text, View, Button } from "react-native";
 import Screen from "../layout/Screen";
 import RenderCount from "../UI/RenderCount";
+import { Share } from "react-native";
 import API from "../API/API";
 
 const dummyWeather = {
@@ -64,6 +65,20 @@ const WeatherInformationScreen = () => {
 
   // Handlers -----------------------------------------
 
+  const handleWeather = async () => {
+    const shareOptions = {
+      message: ` ${weather.location.name} ${weather.current.condition.text} ${
+        weather.current.temp_c
+      }°C ${weather.location.localtime.slice(10, 16)}  `,
+      url: `${weather.current.condition.icon}`,
+    };
+    try {
+      const shareResponse = await Share.share(shareOptions);
+    } catch (error) {
+      console.log("Error -> ", error);
+    }
+  };
+
   return (
     <Screen>
       <Image
@@ -78,6 +93,7 @@ const WeatherInformationScreen = () => {
         Wind(kph): {weather.current.wind_kph}, Humidity:{" "}
         {weather.current.humidity}% UV: {weather.current.uv}
       </Text>
+      <Button onPress={handleWeather} title="Share"></Button>
     </Screen>
   );
 };
