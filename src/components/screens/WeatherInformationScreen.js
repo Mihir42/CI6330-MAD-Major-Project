@@ -1,13 +1,19 @@
-import { StatusBar } from 'expo-status-bar';
-import { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View, Button } from 'react-native';
-import Screen from '../layout/Screen';
-import RenderCount from '../UI/RenderCount';
-import WeatherInfo from '../UI/WeatherInfo';
-import { Share } from 'react-native';
-import API from '../API/API';
-import { Feather } from '@expo/vector-icons';
-import { weatherImages } from '../UI/weatherImages';
+import { useEffect, useState } from "react";
+import {
+  Image,
+  StyleSheet,
+  Text,
+  KeyboardAvoidingView,
+  View,
+  ScrollView,
+  TextInput,
+} from "react-native";
+import Screen from "../layout/Screen";
+import WeatherInfo from "../UI/WeatherInfo";
+import ShareWeather from "../entity/share/ShareWeather";
+import { Picker } from "@react-native-picker/picker";
+import API from "../API/API";
+import { weatherImages } from "../UI/weatherImages";
 
 const dummyWeather = {
   current: {
@@ -19,7 +25,7 @@ const dummyWeather = {
     gust_mph: 9.6,
     humidity: 71,
     is_day: 0,
-    last_updated: '2024-02-27 18:45',
+    last_updated: "2024-02-27 18:45",
     last_updated_epoch: 1709059500,
     precip_in: 0,
     precip_mm: 0.02,
@@ -31,30 +37,33 @@ const dummyWeather = {
     vis_km: 10,
     vis_miles: 6,
     wind_degree: 230,
-    wind_dir: 'SW',
+    wind_dir: "SW",
     wind_kph: 9,
     wind_mph: 5.6,
   },
   location: {
-    country: 'United Kingdom',
+    country: "United Kingdom",
     lat: 51.52,
-    localtime: '2024-02-27 18:56',
+    localtime: "2024-02-27 18:56",
     localtime_epoch: 1709060178,
     lon: -0.11,
-    name: 'Dummy London',
-    region: 'City of London, Greater London',
-    tz_id: 'Europe/London',
+    name: "Dummy London",
+    region: "City of London, Greater London",
+    tz_id: "Europe/London",
   },
 };
 
 const WeatherInformationScreen = () => {
   // Intialisation ------------------------------------
-  const weatherEndpoint =
-    'http://api.weatherapi.com/v1/current.json?key=8c36386ccc784250871133222242102&q=London';
+  const avalibleLocations = [
+    {value: 1, label: "London"}, {value: 2, label: "Birmingham"}
+  ];
 
   // State --------------------------------------------
   const [weather, setWeather] = useState(dummyWeather);
   const [isLoading, setIsLoading] = useState(true);
+  const [location, setLocation] = useState("London");
+  const weatherEndpoint = `http://api.weatherapi.com/v1/current.json?key=8c36386ccc784250871133222242102&q=${location}`;
 
   // Handlers -----------------------------------------
 
@@ -64,41 +73,46 @@ const WeatherInformationScreen = () => {
     if (response.isSuccess) setWeather(response.result);
   };
 
+  const handleLoaction = (value) => {
+    setLocation(value);
+  };
+
   useEffect(() => {
     loadWeather(weatherEndpoint);
-  }, []);
-
-  const handleWeather = async () => {
-    const shareOptions = {
-      message: ` ${weather.location.name} ${weather.current.condition.text} ${
-        weather.current.temp_c
-      }°C ${weather.location.localtime.slice(10, 16)}  `,
-      url: `${weather.current.condition.icon}`,
-    };
-    try {
-      const shareResponse = await Share.share(shareOptions);
-    } catch (error) {
-      console.log('Error -> ', error);
-    }
-  };
+  }, [location]);
 
   // View ------------------------------------------------
   return (
     <Screen>
-      <Feather
-        style={styles.containerTop}
-        name="share"
-        size={28}
-        color="white"
-        onPress={handleWeather}
-      />
+      <ShareWeather currentWeather={weather} />
+      <KeyboardAvoidingView style={styles.formContainer}>
+          <Picker
+            mode={"dropdown"}
+            selectedValue={location}
+            onValueChange={handleLoaction}
+            style={styles.itemPickerStyle}
+          >
+            <Picker.Item
+              value={null}
+              label={"Select location"}
+              style={styles.itemPickerPromptStyle}
+            />
+            {avalibleLocations.map((option, index) => (
+              <Picker.Item
+                key={index}
+                value={option.label}
+                label={option.label}
+              />
+            ))}
+          </Picker>
+      </KeyboardAvoidingView>
       <Image
         style={styles.imageIcon}
         source={weatherImages[weather.current.condition.text]}
       />
       <Text style={styles.textHeaderTemp}>{weather.current.temp_c}°C</Text>
       <Text style={styles.textHeader}>
-        {weather.location.name}, {'\n'}
+        {weather.location.name}, {"\n"}
         {weather.current.condition.text}
       </Text>
       <WeatherInfo currentWeather={weather} />
@@ -111,42 +125,63 @@ export default WeatherInformationScreen;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: "#fff",
   },
-  containerTop: {
-    alignSelf: 'flex-start',
-    verticalAlign: 'top',
-    flex: 1,
-  },
+
   containerBottom: {
     flex: 1,
     marginBottom: 100,
     marginTop: 50,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
+    justifyContent: "space-between",
+    flexDirection: "row",
   },
   textHeader: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 30,
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   textHeaderTemp: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
     fontSize: 44,
-    color: 'white',
-    textAlign: 'center',
+    color: "white",
+    textAlign: "center",
   },
   textNormal: {
     flex: 1,
     fontSize: 20,
-    textAlign: 'center',
-    fontWeight: 'bold',
-    color: 'white',
+    textAlign: "center",
+    fontWeight: "bold",
+    color: "white",
   },
   imageIcon: {
     marginTop: 50,
     width: 100,
     height: 100,
+  },
+  formContainer: {
+    gap: 10,
+  },
+  formItems: {
+    gap: 5,
+  },
+  itemTextInput: {
+    height: 50,
+    width: 390,
+    paddingLeft: 10,
+    fontSize: 16,
+    backgroundColor: "white",
+    borderRadius: 7,
+    borderWidth: 1,
+    borderColor: "lightgray",
+  },
+  itemPickerStyle: {
+    height: 50,
+    width: 390,
+    backgroundColor: "whitesmoke",
+  },
+  itemPickerPromptStyle: {
+    color: "gray",
+    backgroundColor: "whitesmoke",
   },
 });
