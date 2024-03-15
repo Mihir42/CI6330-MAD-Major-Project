@@ -93,26 +93,28 @@ const WeatherInformationScreen = () => {
     <Screen>
       <ShareWeather currentWeather={weather} />
       <KeyboardAvoidingView style={styles.formContainer}>
-        <Picker
-          mode={'dropdown'}
-          selectedValue={location}
-          onValueChange={handleLoaction}
-          style={styles.itemPickerStyle}
-          dropdownIconColor={'#005478'}
-        >
-          <Picker.Item
-            value={null}
-            label={'Select location                 '}
-            style={styles.itemPickerPromptStyle}
-          />
-          {avalibleLocations.map((option, index) => (
+        <View style={styles.picker}>
+          <Picker
+            mode={'dropdown'}
+            selectedValue={location}
+            onValueChange={handleLoaction}
+            style={styles.itemPickerStyle}
+            dropdownIconColor={'#005478'}
+          >
             <Picker.Item
-              key={index}
-              value={option.label}
-              label={option.label}
+              value={null}
+              label={'Select location                 '}
+              style={styles.itemPickerPromptStyle}
             />
-          ))}
-        </Picker>
+            {avalibleLocations.map((option, index) => (
+              <Picker.Item
+                key={index}
+                value={option.label}
+                label={option.label}
+              />
+            ))}
+          </Picker>
+        </View>
       </KeyboardAvoidingView>
       <Image
         style={styles.imageIcon}
@@ -163,7 +165,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   imageIcon: {
-    marginTop: 50,
+    marginTop: 15,
     width: 100,
     height: 100,
   },
@@ -186,11 +188,30 @@ const styles = StyleSheet.create({
   itemPickerStyle: {
     height: 50,
     width: 200,
-    backgroundColor: '#005478',
+    backgroundColor: 'white',
+    borderWidth: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
   itemPickerPromptStyle: {
-    color: 'whitesmoke',
-    backgroundColor: '#005478',
+    color: 'black',
+    backgroundColor: 'white',
     width: 200,
+    borderWidth: 30,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
+  },
+  picker: {
+    padding: 8,
+    backgroundColor: 'white',
+    borderWidth: 1,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderBottomLeftRadius: 20,
+    borderBottomRightRadius: 20,
   },
 });
