@@ -1,6 +1,6 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import FullWidthImage from "react-native-fullwidth-image";
-import React from "react";
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import FullWidthImage from 'react-native-fullwidth-image';
+import React from 'react';
 
 const Card = ({ singlePost }) => {
   // Intialisation ------------------------------------
@@ -8,9 +8,13 @@ const Card = ({ singlePost }) => {
   // Handlers -----------------------------------------
   // View ------------------------------------------------
   return (
-    <View>
-      <FullWidthImage source={{ uri: singlePost.postImage }} />
-      <Text>{singlePost.postTitle}</Text>
+    <View style={styles.cardComponent}>
+      <FullWidthImage
+        style={styles.image}
+        source={{ uri: singlePost.postImage }}
+      />
+      <Text style={styles.cardHeading}>{singlePost.postTitle}</Text>
+      <Text>{singlePost.postDescription}</Text>
     </View>
   );
 };
@@ -19,6 +23,20 @@ export default Card;
 
 const styles = StyleSheet.create({
   contentContainer: {
-    paddingVertical: 20,
+    paddingBottom: 40,
   },
+  cardComponent: {
+    padding: 3,
+    paddingBottom: 20,
+    borderColor: 'white',
+    borderWidth: 1,
+    borderRadius: 20,
+    margin: 5,
+    marginHorizontal: 15,
+  },
+  cardHeading: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  image: { borderRadius: 13 },
 });
