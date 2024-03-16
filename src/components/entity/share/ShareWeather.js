@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   containerTop: {
     alignSelf: "flex-start",
     verticalAlign: "top",
-    flex: 1,
+    flex: 0.5,
+    marginTop: 30,
   },
 });
 

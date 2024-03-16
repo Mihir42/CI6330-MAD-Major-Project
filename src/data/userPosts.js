@@ -1,30 +1,32 @@
 const userPosts = [
   {
     postID: 1,
-    postTitle: 'Pissing rain down',
-    postDescription: 'Its bloody pissing down mate',
-    postImage: 'https://i.ytimg.com/vi/0dPnPJ7aYRg/maxresdefault.jpg',
+    postTitle: "Vienna rain",
+    postDescription: "An wet day in Vienna",
+    postImage:
+      "https://cdn.1000things.at/app/uploads/rainy-days-in-vienna-header.jpg",
   },
 
   {
     postID: 2,
-    postTitle: 'Snow bog',
-    postDescription: 'Clarkson I know its you, I am packing it on the throne',
-    postImage: 'https://i.ytimg.com/vi/0dPnPJ7aYRg/maxresdefault.jpg',
+    postTitle: "Umea Snow",
+    postDescription: "Snowwy hillside in Umea Sweeden",
+    postImage:
+      "https://i.pinimg.com/originals/ee/ec/92/eeec92e655ab5cc941d29dc2f89921d9.jpg",
   },
   {
     postID: 3,
-    postTitle: 'Sunny day',
-    postDescription: 'Lovely weather out here today',
+    postTitle: "Sunshine in El chorro",
+    postDescription: "Bright sunny day in Spain El chorro",
     postImage:
-      'https://swsca-production.s3.amazonaws.com/ckeditor_assets/pictures/1177/content_sarahconnorashdeath.jpg?1359444640',
+      "https://www.hertzpageo.com/img/!!!!!!!!!!!!%20Hertz%20blog%20post%20-%20xmas%20markets%201/Spanish_Roads_El_Chorro.jpg",
   },
   {
     postID: 4,
-    postTitle: 'Fog',
-    postDescription: 'Foggy weather with some passerbys',
+    postTitle: "Fog in Prague",
+    postDescription: "Foggy morning in Prague, Czech republic",
     postImage:
-      'https://steamuserimages-a.akamaihd.net/ugc/1684891800739749979/EF8B20E1E13EC80D61628D3125240F635AF31C44/?imw=637&imh=358&ima=fit&impolicy=Letterbox&imcolor=%23000000&letterbox=true',
+      "https://images.fineartamerica.com/images/artworkimages/mediumlarge/3/prague-in-the-fog-denis-poltoradnev.jpg",
   },
 ];
 
