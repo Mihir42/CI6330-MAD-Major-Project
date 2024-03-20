@@ -5,6 +5,7 @@ import {
   Text,
   View,
   Pressable,
+  LogBox,
 } from "react-native";
 import Card from "../UI/Card";
 import React, { useState } from "react";
@@ -14,17 +15,33 @@ import initialPosts from "../../data/userPosts";
 
 const WeatherPostsScreen = ({ navigation }) => {
   // Intialisation ------------------------------------
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
   // State --------------------------------------------
   const [posts, setPost] = useState(initialPosts);
   // Handlers -----------------------------------------
-  const onAdd = () => {
-    navigation.navigate("AddPosts");
+  const handleAdd = (post) => {
+    setPost([...posts, post]);
+    navigation.goBack();
   };
+
+  const onAdd = (post) => {
+    handleAdd(post);
+    navigation.goBack;
+  };
+
+  const goToViewScreen = (post) => {
+    navigation.navigate("Posts", { post });
+  };
+
+  const goToAddScreen = () => navigation.navigate("AddPosts", { onAdd });
+
   // View ------------------------------------------------
 
   return (
     <ScrollView style={styles.component}>
-      <Pressable style={styles.addPostButton} onPress={onAdd}>
+      <Pressable style={styles.addPostButton} onPress={goToAddScreen}>
         <Text style={styles.buttonText}>Add Post</Text>
       </Pressable>
       {posts.map((post) => {
