@@ -1,40 +1,28 @@
-import { View, Text, TextInput, StyleSheet, Button } from "react-native";
+import {
+  View,
+  Text,
+  TextInput,
+  StyleSheet,
+  Button,
+  LogBox,
+} from "react-native";
 import Screen from "../layout/Screen";
 import React, { useState } from "react";
+import PostForm from "../entity/posts/PostForm";
 
-const initialPost = {
-  postTitle: "Rainy day",
-  postDescription: "Rainy day in wales",
-  postImage:
-    "https://cdn.vox-cdn.com/thumbor/wfbQ3XccV6SxGMt1l6zBPL3Xg7o=/0x0:1192x795/1400x1050/filters:focal(596x398:597x399)/cdn.vox-cdn.com/uploads/chorus_asset/file/22312759/rickroll_4k.jpg",
-};
-
-const WeatherAddPostScreen = () => {
+const WeatherAddPostScreen = ({ route, navigation }) => {
   // Intialisation ------------------------------------
+  LogBox.ignoreLogs([
+    "Non-serializable values were found in the navigation state",
+  ]);
+  const { onAdd } = route.params;
   // State --------------------------------------------
-  const [post, setPost] = useState(initialPost);
   // Handlers -----------------------------------------
-  const inputText = (value) => {
-    console.log(value);
-  };
-
-  const handleChange = (field, value) => {
-    setPost({ ...post, [field]: value });
-  };
+  const handleCancel = navigation.goBack;
   // View ------------------------------------------------
-
   return (
     <Screen>
-      <View>
-        <Text>Add post title</Text>
-        <TextInput
-          style={styles.input}
-          value={post.postTitle}
-          onChangeText={(value) => handleChange("postTitle", value)}
-        />
-        <Text>{post.postTitle}</Text>
-        <Button title={"Submit post"} />
-      </View>
+      <PostForm onSubmit={onAdd} onCancel={handleCancel} />
     </Screen>
   );
 };
@@ -42,10 +30,15 @@ const WeatherAddPostScreen = () => {
 export default WeatherAddPostScreen;
 
 const styles = StyleSheet.create({
+  formLabel: {
+    left: 10,
+    color: "white",
+  },
   input: {
     width: 380,
     height: 50,
     padding: 10,
+    margin: 10,
     borderWidth: 1,
     borderColor: "white",
     backgroundColor: "#005478",
