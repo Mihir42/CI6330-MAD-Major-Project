@@ -8,7 +8,7 @@ import {
   LogBox,
 } from "react-native";
 import Card from "../UI/Card";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import initialPosts from "../../data/userPosts";
@@ -23,7 +23,7 @@ const WeatherPostsScreen = ({ navigation }) => {
   // Handlers -----------------------------------------
   const handleAdd = (post) => {
     setPost([...posts, post]);
-    navigation.goBack();
+    navigation.navigate("Posts");
   };
 
   const onAdd = (post) => {

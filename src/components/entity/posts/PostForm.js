@@ -25,7 +25,10 @@ const PostForm = ({ orginalPost, onSubmit, onCancel }) => {
   const handleChange = (field, value) => {
     setPost({ ...post, [field]: value });
   };
-  const handleSubmit = () => onSubmit(post);
+  const handleSubmit = () => {
+    onSubmit(post);
+    handleChange("postID", handleRandom(10, 100));
+  };
 
   // View -----------------------------------
   const submitLabel = orginalPost ? "Modify" : "Add";
