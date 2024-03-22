@@ -6,25 +6,25 @@ import {
   View,
   Pressable,
   LogBox,
-} from "react-native";
-import Card from "../UI/Card";
-import React, { useEffect, useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+} from 'react-native';
+import Card from '../UI/Card';
+import React, { useEffect, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 
-import initialPosts from "../../data/userPosts";
-import PopUpMenu from "../UI/PopUpMenu";
+import initialPosts from '../../data/userPosts';
+import PopUpMenu from '../UI/PopUpMenu';
 
 const WeatherPostsScreen = ({ navigation }) => {
   // Intialisation ------------------------------------
   LogBox.ignoreLogs([
-    "Non-serializable values were found in the navigation state",
+    'Non-serializable values were found in the navigation state',
   ]);
   // State --------------------------------------------
   const [posts, setPost] = useState(initialPosts);
   // Handlers -----------------------------------------
   const handleAdd = (post) => {
     setPost([...posts, post]);
-    navigation.navigate("Posts");
+    navigation.navigate('AddPosts');
   };
 
   const onAdd = (post) => {
@@ -33,10 +33,10 @@ const WeatherPostsScreen = ({ navigation }) => {
   };
 
   const goToViewScreen = (post) => {
-    navigation.navigate("Posts", { post });
+    navigation.navigate('Posts', { post });
   };
 
-  const goToAddScreen = () => navigation.navigate("AddPosts", { onAdd });
+  const goToAddScreen = () => navigation.navigate('AddPosts', { onAdd });
 
   // View ------------------------------------------------
 
@@ -57,21 +57,21 @@ export default WeatherPostsScreen;
 
 const styles = StyleSheet.create({
   component: {
-    backgroundColor: "#005478",
+    backgroundColor: '#005478',
   },
   addPostButton: {
     width: 380,
-    alignItems: "center",
-    justifyContent: "center",
+    alignItems: 'center',
+    justifyContent: 'center',
     margin: 15,
     marginTop: 45,
     marginBottom: 50,
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 5,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   buttonText: {
-    color: "black",
+    color: 'black',
   },
 });
