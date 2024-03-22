@@ -1,11 +1,13 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import FullWidthImage from "react-native-fullwidth-image";
 import React from "react";
+import PopUpMenu from "./PopUpMenu";
 
 const Card = ({ singlePost }) => {
   // Intialisation ------------------------------------
   // State --------------------------------------------
   // Handlers -----------------------------------------
+
   // View ------------------------------------------------
   return (
     <View style={styles.cardComponent}>
@@ -15,6 +17,7 @@ const Card = ({ singlePost }) => {
       />
       <Text style={styles.cardHeading}>{singlePost.postTitle}</Text>
       <Text style={styles.postDescription}>{singlePost.postDescription}</Text>
+      <PopUpMenu />
     </View>
   );
 };
@@ -40,5 +43,17 @@ const styles = StyleSheet.create({
   postDescription: {
     color: "white",
   },
+  moreVertical: {
+    alignSelf: "flex-end",
+  },
   image: { borderRadius: 13 },
 });
+
+{
+  /* <Feather
+  style={styles.moreVertical}
+  name="more-vertical"
+  size={24}
+  color={"white"}
+/>; */
+}

@@ -12,6 +12,7 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 
 import initialPosts from "../../data/userPosts";
+import PopUpMenu from "../UI/PopUpMenu";
 
 const WeatherPostsScreen = ({ navigation }) => {
   // Intialisation ------------------------------------
@@ -44,12 +45,9 @@ const WeatherPostsScreen = ({ navigation }) => {
       <Pressable style={styles.addPostButton} onPress={goToAddScreen}>
         <Text style={styles.buttonText}>Add Post</Text>
       </Pressable>
+
       {posts.map((post) => {
-        return (
-          <Card key={post.postID} singlePost={post}>
-            {post.postTitle}
-          </Card>
-        );
+        return <Card key={post.postID} singlePost={post}></Card>;
       })}
     </ScrollView>
   );
