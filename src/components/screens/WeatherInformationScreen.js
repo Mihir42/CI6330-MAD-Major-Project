@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useContext, props } from 'react';
 import {
   Image,
   StyleSheet,
@@ -14,6 +14,7 @@ import ShareWeather from '../entity/share/ShareWeather';
 import { Picker } from '@react-native-picker/picker';
 import API from '../API/API';
 import { weatherImages } from '../UI/weatherImages';
+import Geo, { returnLocation } from '../entity/posts/Geo';
 
 const dummyWeather = {
   current: {
@@ -53,7 +54,7 @@ const dummyWeather = {
   },
 };
 
-const WeatherInformationScreen = () => {
+const WeatherInformationScreen = (props) => {
   // Intialisation ------------------------------------
   const avalibleLocations = [
     { value: 1, label: 'London' },
@@ -126,6 +127,7 @@ const WeatherInformationScreen = () => {
         {weather.current.condition.text}
       </Text>
       <WeatherInfo currentWeather={weather} />
+      <Geo />
     </Screen>
   );
 };

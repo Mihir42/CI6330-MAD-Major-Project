@@ -1,12 +1,12 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import WeatherInformationScreen from "./src/components/screens/WeatherInformationScreen";
-import { StyleSheet } from "react-native";
-import WeatherPostsScreen from "./src/components/screens/WeatherPostsScreen";
-import { Feather } from "@expo/vector-icons";
-import WeatherAddPostScreen from "./src/components/screens/WeatherAddPostScreen";
-import WeatherEditPostScreen from "./src/components/screens/WeatherEditPostScreen";
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import WeatherInformationScreen from './src/components/screens/WeatherInformationScreen';
+import { StyleSheet } from 'react-native';
+import WeatherPostsScreen from './src/components/screens/WeatherPostsScreen';
+import { Feather } from '@expo/vector-icons';
+import WeatherAddPostScreen from './src/components/screens/WeatherAddPostScreen';
+import WeatherEditPostScreen from './src/components/screens/WeatherEditPostScreen';
 
 export default function App() {
   // Intialisation ------------------------------------
@@ -15,7 +15,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Tab.Navigator
-        initialRouteName="Posts"
+        initialRouteName="Weather"
         screenOptions={{ headerShown: false }}
       >
         <Tab.Screen
