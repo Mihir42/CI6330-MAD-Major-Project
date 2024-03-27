@@ -27,7 +27,7 @@ const PostForm = ({ orginalPost, onSubmit, onCancel }) => {
   };
   const handleSubmit = () => {
     onSubmit(post);
-    handleChange("postID", handleRandom(10, 100));
+    // handleChange("postID", handleRandom(10, 100));
   };
 
   // View -----------------------------------
@@ -37,7 +37,7 @@ const PostForm = ({ orginalPost, onSubmit, onCancel }) => {
     <Form onsubmit={handleSubmit} onCancel={onCancel} submitLabel={submitLabel}>
       <Form.InputText
         label="Post title"
-        value={post.PostTitle}
+        value={post.postTitle}
         onChange={(value) => handleChange("postTitle", value)}
       />
       <Form.InputText

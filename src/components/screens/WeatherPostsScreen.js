@@ -24,16 +24,37 @@ const WeatherPostsScreen = ({ navigation }) => {
     navigation.navigate("Posts");
   };
 
+  const handleModify = (updatedPost) => {
+    setPost(
+      posts.map((post) =>
+        post.postID === updatedPost.postID ? updatedPost : post
+      )
+    );
+  };
+
+  const handleDelete = (post) => {
+    setPost(posts.filter((item) => item.postID !== post.postID));
+  };
+
   const onAdd = (post) => {
     handleAdd(post);
     navigation.goBack;
   };
 
-  const goToViewScreen = (post) => {
-    navigation.navigate("Posts", { post });
+  const onModify = (post) => {
+    handleModify(post);
+    navigation.navigate("Posts");
+  };
+
+  const onDelete = (post) => {
+    handleDelete(post);
+    navigation.goBack();
   };
 
   const goToAddScreen = () => navigation.navigate("AddPosts", { onAdd });
+
+  const goToEditScreen = (post) =>
+    navigation.navigate("EditPosts", { post, onModify });
 
   // View ------------------------------------------------
 
@@ -45,7 +66,12 @@ const WeatherPostsScreen = ({ navigation }) => {
 
       {posts.map((post) => {
         return (
-          <Card key={post.postID} singlePost={post}>
+          <Card
+            key={post.postID}
+            singlePost={post}
+            goToEditScreen={() => goToEditScreen(post)}
+            onDelete={() => onDelete(post)}
+          >
             {post.postTitle}
           </Card>
         );

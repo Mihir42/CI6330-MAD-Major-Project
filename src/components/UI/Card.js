@@ -1,10 +1,11 @@
-import { ScrollView, StyleSheet, Text, View } from 'react-native';
-import FullWidthImage from 'react-native-fullwidth-image';
-import React from 'react';
-import PopUpMenu from './PopUpMenu';
+import { ScrollView, StyleSheet, Text, View } from "react-native";
+import FullWidthImage from "react-native-fullwidth-image";
+import React from "react";
+import PopUpMenu from "./PopUpMenu";
 
-const Card = ({ singlePost }) => {
+const Card = ({ singlePost, goToEditScreen, onDelete }) => {
   // Intialisation ------------------------------------
+
   // State --------------------------------------------
   // Handlers -----------------------------------------
 
@@ -18,7 +19,12 @@ const Card = ({ singlePost }) => {
       <View style={styles.iconContainer}>
         <Text style={styles.cardHeading}>{singlePost.postTitle}</Text>
         <Text style={styles.postDescription}>{singlePost.postDescription}</Text>
-        <PopUpMenu style={styles.icon} />
+        <PopUpMenu
+          style={styles.icon}
+          goToEditScreen={goToEditScreen}
+          singlePost={singlePost}
+          onDelete={onDelete}
+        />
       </View>
     </View>
   );
@@ -39,17 +45,17 @@ const styles = StyleSheet.create({
   },
   cardHeading: {
     fontSize: 20,
-    fontWeight: 'bold',
-    color: 'blue',
+    fontWeight: "bold",
+    color: "blue",
     width: 250,
   },
   postDescription: {
-    color: 'white',
+    color: "white",
     width: 250,
   },
   image: { borderRadius: 13 },
   iconContainer: {
-    flexDirection: 'column',
+    flexDirection: "column",
   },
 });
 
