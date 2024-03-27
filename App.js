@@ -6,6 +6,7 @@ import { StyleSheet } from "react-native";
 import WeatherPostsScreen from "./src/components/screens/WeatherPostsScreen";
 import { Feather } from "@expo/vector-icons";
 import WeatherAddPostScreen from "./src/components/screens/WeatherAddPostScreen";
+import WeatherEditPostScreen from "./src/components/screens/WeatherEditPostScreen";
 
 export default function App() {
   // Intialisation ------------------------------------
@@ -34,6 +35,13 @@ export default function App() {
         <Tab.Screen
           name="AddPosts"
           component={WeatherAddPostScreen}
+          options={{
+            tabBarIcon: () => <Feather name="upload" size={28} color="black" />,
+          }}
+        />
+        <Tab.Screen
+          name="EditPosts"
+          component={WeatherEditPostScreen}
           options={{
             tabBarIcon: () => <Feather name="upload" size={28} color="black" />,
           }}
