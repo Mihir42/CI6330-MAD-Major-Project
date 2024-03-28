@@ -1,7 +1,7 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import FullWidthImage from "react-native-fullwidth-image";
-import React from "react";
-import PopUpMenu from "./PopUpMenu";
+import { ScrollView, StyleSheet, Text, View } from 'react-native';
+import FullWidthImage from 'react-native-fullwidth-image';
+import React from 'react';
+import PopUpMenu from './PopUpMenu';
 
 const Card = ({ singlePost, goToEditScreen, onDelete }) => {
   // Intialisation ------------------------------------
@@ -16,9 +16,13 @@ const Card = ({ singlePost, goToEditScreen, onDelete }) => {
         style={styles.image}
         source={{ uri: singlePost.postImage }}
       />
-      <View style={styles.iconContainer}>
-        <Text style={styles.cardHeading}>{singlePost.postTitle}</Text>
-        <Text style={styles.postDescription}>{singlePost.postDescription}</Text>
+      <View style={styles.innerContainer}>
+        <View>
+          <Text style={styles.cardHeading}>{singlePost.postTitle}</Text>
+          <Text style={styles.postDescription}>
+            {singlePost.postDescription}
+          </Text>
+        </View>
         <PopUpMenu
           style={styles.icon}
           goToEditScreen={goToEditScreen}
@@ -42,21 +46,29 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     margin: 5,
     marginHorizontal: 15,
+    borderBottomColor: 'white',
+    borderBottomWidth: 1,
   },
   cardHeading: {
     fontSize: 20,
-    fontWeight: "bold",
-    color: "blue",
+    fontWeight: 'bold',
+    color: 'white',
     width: 250,
+    alignSelf: 'flex-start',
   },
   postDescription: {
-    color: "white",
+    color: 'white',
     width: 250,
+    alignSelf: 'flex-start',
   },
   image: { borderRadius: 13 },
-  iconContainer: {
-    flexDirection: "column",
+  icon: {
+    flexDirection: 'column',
+    flex: 1,
   },
+  icon: { position: 'absolute' },
+  innerContainer: { flexDirection: 'row' },
+  textContainer: { flexDirection: 'column' },
 });
 
 {

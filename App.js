@@ -7,6 +7,7 @@ import WeatherPostsScreen from './src/components/screens/WeatherPostsScreen';
 import { Feather } from '@expo/vector-icons';
 import WeatherAddPostScreen from './src/components/screens/WeatherAddPostScreen';
 import WeatherEditPostScreen from './src/components/screens/WeatherEditPostScreen';
+import PostNavigation from './src/PostNavigation';
 
 export default function App() {
   // Intialisation ------------------------------------
@@ -27,36 +28,27 @@ export default function App() {
         />
         <Tab.Screen
           name="Posts"
-          component={WeatherPostsScreen}
+          component={PostNavigation}
           options={{
             tabBarIcon: () => <Feather name="upload" size={28} color="black" />,
           }}
         />
-        <Tab.Screen
+        {/* <Tab.Screen
           name="AddPosts"
           component={WeatherAddPostScreen}
           options={{
             tabBarIcon: () => <Feather name="upload" size={28} color="black" />,
           }}
-        />
-        <Tab.Screen
+        /> */}
+        {/* <Tab.Screen
           name="EditPosts"
           component={WeatherEditPostScreen}
           options={{
             tabBarIcon: () => <Feather name="upload" size={28} color="black" />,
           }}
-        />
+        /> */}
       </Tab.Navigator>
     </NavigationContainer>
-  );
-}
-
-function StackScreens() {
-  const Stack = createNativeStackNavigator();
-  return (
-    <Stack.Navigator>
-      <Stack.Screen name="AddPost" component={WeatherAddPostScreen} />
-    </Stack.Navigator>
   );
 }
 
