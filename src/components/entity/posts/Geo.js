@@ -1,6 +1,10 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect, createContext } from 'react';
-import * as Location from 'expo-location';
+// ACKNOWLEDING EXTERNAL CONTENT
+// Some of the following code was wholly, or in part, taken or adapted from the following online source(s):
+// https://www.youtube.com/watch?v=d7G0E_9FwyE&pp=ygUTbWlzcyBjb2RlIHJlYWN0IGdwcw%3D%3D
+
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect, createContext } from "react";
+import * as Location from "expo-location";
 
 const dummyLocation = {
   coords: {
@@ -18,10 +22,10 @@ const dummyLocation = {
 
 const Geo = ({ callback }) => {
   const [location, setLocation] = useState(dummyLocation);
-  const [address, setAddress] = useState('Balls');
-  const [city, setCity] = useState('Tennis');
+  const [address, setAddress] = useState("Balls");
+  const [city, setCity] = useState("Tennis");
 
-  let nuts = 'Nut';
+  let nuts = "Nut";
   const LocationContext = createContext();
 
   const resverseGeocode = async () => {
@@ -29,7 +33,7 @@ const Geo = ({ callback }) => {
       longitude: location.coords.longitude,
       latitude: location.coords.latitude,
     });
-    let tempAddress = '';
+    let tempAddress = "";
     tempAddress = reverseGeocodedAddress[0].subregion;
     setCity(tempAddress);
     callback(city);
@@ -38,8 +42,8 @@ const Geo = ({ callback }) => {
   useEffect(() => {
     const getPermissions = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Please grant location permissions');
+      if (status !== "granted") {
+        console.log("Please grant location permissions");
         return;
       }
 

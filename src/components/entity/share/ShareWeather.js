@@ -1,3 +1,7 @@
+// ACKNOWLEDING EXTERNAL CONTENT
+// Some of the following code was wholly, or in part, taken or adapted from the following online source(s):
+// https://www.youtube.com/watch?v=vXzpEJeVmi8&pp=ygUZcmVhY3Qtc29jaWFsIHNoYXJlIG5hdGl2ZQ%3D%3D
+
 import { Share } from "react-native";
 import { Feather } from "@expo/vector-icons";
 import { StyleSheet } from "react-native";
