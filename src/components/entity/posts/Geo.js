@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
-import React, { useState, useEffect, createContext } from 'react';
-import * as Location from 'expo-location';
+import { StyleSheet, Text, View } from "react-native";
+import React, { useState, useEffect, createContext } from "react";
+import * as Location from "expo-location";
 
 const dummyLocation = {
   coords: {
@@ -16,12 +16,12 @@ const dummyLocation = {
   timestamp: 1711571170839,
 };
 
-const Geo = () => {
+const Geo = ({ callback }) => {
   const [location, setLocation] = useState(dummyLocation);
-  const [address, setAddress] = useState('Balls');
-  const [city, setCity] = useState('Balls');
+  const [address, setAddress] = useState("Balls");
+  const [city, setCity] = useState("Tennis");
 
-  let nuts = 'Nut';
+  let nuts = "Nut";
   const LocationContext = createContext();
 
   const resverseGeocode = async () => {
@@ -29,16 +29,17 @@ const Geo = () => {
       longitude: location.coords.longitude,
       latitude: location.coords.latitude,
     });
-    let tempAddress = '';
+    let tempAddress = "";
     tempAddress = reverseGeocodedAddress[0].subregion;
     setCity(tempAddress);
+    callback(city);
   };
 
   useEffect(() => {
     const getPermissions = async () => {
       let { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== 'granted') {
-        console.log('Please grant location permissions');
+      if (status !== "granted") {
+        console.log("Please grant location permissions");
         return;
       }
 
@@ -49,11 +50,7 @@ const Geo = () => {
     getPermissions();
   }, [city]);
 
-  return (
-    <View>
-      <Text>{city}</Text>
-    </View>
-  );
+  return <View></View>;
 };
 
 export default Geo;
