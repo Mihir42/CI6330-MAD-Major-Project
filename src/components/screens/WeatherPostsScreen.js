@@ -6,22 +6,22 @@ import {
   View,
   Pressable,
   LogBox,
-} from "react-native";
-import Card from "../UI/Card";
-import React, { useEffect, useState } from "react";
-import initialPosts from "../../data/userPosts";
+} from 'react-native';
+import Card from '../UI/Card';
+import React, { useEffect, useState } from 'react';
+import initialPosts from '../../data/userPosts';
 
 const WeatherPostsScreen = ({ navigation }) => {
   // Intialisation ------------------------------------
   LogBox.ignoreLogs([
-    "Non-serializable values were found in the navigation state",
+    'Non-serializable values were found in the navigation state',
   ]);
   // State --------------------------------------------
   const [posts, setPost] = useState(initialPosts);
   // Handlers -----------------------------------------
   const handleAdd = (post) => {
     setPost([...posts, post]);
-    navigation.navigate("Posts");
+    navigation.navigate('Posts');
   };
 
   const handleModify = (updatedPost) => {
@@ -38,12 +38,12 @@ const WeatherPostsScreen = ({ navigation }) => {
 
   const onAdd = (post) => {
     handleAdd(post);
-    navigation.goBack;
+    navigation.goBack();
   };
 
   const onModify = (post) => {
     handleModify(post);
-    navigation.navigate("Posts");
+    navigation.navigate('PostScreen');
   };
 
   const onDelete = (post) => {
@@ -51,10 +51,10 @@ const WeatherPostsScreen = ({ navigation }) => {
     navigation.goBack();
   };
 
-  const goToAddScreen = () => navigation.navigate("AddPosts", { onAdd });
+  const goToAddScreen = () => navigation.navigate('AddPosts', { onAdd });
 
   const goToEditScreen = (post) =>
-    navigation.navigate("EditPosts", { post, onModify });
+    navigation.navigate('EditPosts', { post, onModify });
 
   // View ------------------------------------------------
 
@@ -84,21 +84,21 @@ export default WeatherPostsScreen;
 
 const styles = StyleSheet.create({
   component: {
-    backgroundColor: "#005478",
+    backgroundColor: '#005478',
   },
   addPostButton: {
-    width: 380,
-    alignItems: "center",
-    justifyContent: "center",
+    width: 340,
+    alignItems: 'center',
+    alignSelf: 'center',
     margin: 15,
     marginTop: 45,
     marginBottom: 50,
     paddingVertical: 12,
     paddingHorizontal: 12,
     borderRadius: 5,
-    backgroundColor: "white",
+    backgroundColor: 'white',
   },
   buttonText: {
-    color: "black",
+    color: 'black',
   },
 });

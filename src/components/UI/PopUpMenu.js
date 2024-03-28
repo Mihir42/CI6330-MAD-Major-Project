@@ -4,10 +4,10 @@ import {
   MenuOption,
   MenuTrigger,
   MenuProvider,
-} from "react-native-popup-menu";
-import { StyleSheet } from "react-native";
-import { Feather } from "@expo/vector-icons";
-import { NavigationAction } from "@react-navigation/native";
+} from 'react-native-popup-menu';
+import { StyleSheet } from 'react-native';
+import { Feather } from '@expo/vector-icons';
+import { NavigationAction } from '@react-navigation/native';
 
 export const PopUpMenu = ({
   navigation,
@@ -26,8 +26,8 @@ export const PopUpMenu = ({
           <Feather
             style={styles.moreVertical}
             name="more-vertical"
-            size={24}
-            color={"white"}
+            size={34}
+            color={'white'}
           />
         </MenuTrigger>
         <MenuOptions style={styles.optionsContainer}>
@@ -43,17 +43,17 @@ export default PopUpMenu;
 
 const styles = StyleSheet.create({
   menuContainer: {
-    alignItems: "flex-end",
+    alignItems: 'flex-end',
   },
   menuTriggerText: {
-    color: "white",
+    color: 'white',
   },
   moreVertical: {
-    alignSelf: "flex-end",
+    alignSelf: 'flex-end',
     width: 30,
     height: 80,
   },
   optionsContainer: {
-    justifyContent: "flex-end",
+    justifyContent: 'flex-end',
   },
 });
