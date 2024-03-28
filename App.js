@@ -1,13 +1,17 @@
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import WeatherInformationScreen from './src/components/screens/WeatherInformationScreen';
-import { StyleSheet } from 'react-native';
-import WeatherPostsScreen from './src/components/screens/WeatherPostsScreen';
-import { Feather } from '@expo/vector-icons';
-import WeatherAddPostScreen from './src/components/screens/WeatherAddPostScreen';
-import WeatherEditPostScreen from './src/components/screens/WeatherEditPostScreen';
-import PostNavigation from './src/PostNavigation';
+// ACKNOWLEDING EXTERNAL CONTENT
+// Some of the following code was wholly, or in part, taken or adapted from the following online source(s):
+//https:reactnavigation.org/docs/tab-based-navigation/
+
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import WeatherInformationScreen from "./src/components/screens/WeatherInformationScreen";
+import { StyleSheet } from "react-native";
+import WeatherPostsScreen from "./src/components/screens/WeatherPostsScreen";
+import { Feather } from "@expo/vector-icons";
+import WeatherAddPostScreen from "./src/components/screens/WeatherAddPostScreen";
+import WeatherEditPostScreen from "./src/components/screens/WeatherEditPostScreen";
+import PostNavigation from "./src/PostNavigation";
 
 export default function App() {
   // Intialisation ------------------------------------
